@@ -13,7 +13,7 @@ The environment variables used in the nginx.tmpl are:
 
 ###ENDPOINT
    - It is the server DNS.
-   - The username and this env variable conform the server name
-   
+   - The username and this env variable conform the server name use in nginx.tmpl
+
 
 
