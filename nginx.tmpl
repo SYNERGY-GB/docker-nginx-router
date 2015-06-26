@@ -1,0 +1,45 @@
+server {
+	listen 443 ssl default;
+
+	ssl on;
+	ssl_certificate /etc/ssl/nginx/cert.crt;
+	ssl_certificate_key /etc/ssl/nginx/cert.key;
+
+	return 301 {{getenv "NOTFOUND_URL"}};
+}
+
+server {
+	listen 80 default;
+
+	return 301 {{getenv "NOTFOUND_URL"}};
+}
+
+{{ if ls "/web-app/" }}
+  {{range gets "/web-app/*" }}
+
+      {{ $url := split .Key "/"}}
+
+    server {
+      listen 80;
+      server_name {{index $url 2}}.{{getenv "ENDPOINT"}};
+
+      rewrite ^ https://{{index $url 2}}.{{getenv "ENDPOINT"}}$request_uri? permanent;
+    }
+
+    server {
+        listen 443 ssl;
+        server_name {{index $url 2}}.{{getenv "ENDPOINT"}};
+
+        ssl on;
+        ssl_certificate /etc/ssl/nginx/cert.crt;
+        ssl_certificate_key /etc/ssl/nginx/cert.key;
+
+        location / {
+          proxy_pass http://{{.Value}};
+          proxy_set_header        X-Forwarded-Proto https;
+          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+  {{end}}
+{{end}}
+
