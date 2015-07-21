@@ -20,6 +20,6 @@ RUN chmod +x /bin/confd-watch
 
 RUN rm /etc/nginx/conf.d/default.conf
 
-VOLUME /etc/ssl/nginx
+VOLUME /tls
 
 ENTRYPOINT ["/bin/confd-watch"]
