@@ -28,17 +28,15 @@ Adding more keys on etcd will automatically make those subdomains available in t
 
 ##Configuration Variables
 
-Environment Variable | Description
----------------------|------------------------------------------------------------------------
-ENDPOINT             |FQDN of the aplications' parent domain __(required)__
-ETCD_HOST            |Host where etcd is running __(required)__
-ETCD_PORT            |Port where etcd is running. Defaults to 4001
-ETCD_PREFIX          |Key to watch for changes. Defaults to `/apps`.
-NOTFOUND_URL         |Page to redirect to when no app with the requested name is registered
-UPDATE_INTERVAL      |Interval (in seconds) to wait between confd polls. Defaults to 10
-TLS                  |Enable/Disable TLS support. Defaults to 1 (enabled)
-TLS_CERT             |Certificate filename. This path is relative to the `/tls` folder. Defaults to `cert.crt`
-TLS_KEY              |Private key filename. This path is relative to the `/tls` folder. Defaults to `cert.key`
+- __ENDPOINT__: FQDN of the aplications' parent domain __(required)__
+- __ETCD_HOST__: Host where etcd is running __(required)__
+- __ETCD_PORT__: Port where etcd is running. Defaults to 4001
+- __ETCD_PREFIX__: Key to watch for changes. Defaults to `/apps`.
+- __NOTFOUND_URL__: Page to redirect to when no app with the requested name is registered
+- __UPDATE_INTERVAL__: Interval (in seconds) to wait between confd polls. Defaults to 10
+- __TLS__: Enable/Disable TLS support. Defaults to 1 (enabled)
+- __TLS_CERT__: Certificate filename. This path is relative to the `/tls` folder. Defaults to `cert.crt`
+- __TLS_KEY__: Private key filename. This path is relative to the `/tls` folder. Defaults to `cert.key`
 
 ##TLS
 
