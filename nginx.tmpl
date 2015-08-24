@@ -41,15 +41,6 @@ server {
           proxy_set_header        X-Forwarded-Proto https;
           proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
         }
-
-         error_page 502 /502.html;
-         location = /502.html {
-
-          proxy_pass {{getenv "502_URL"}};
-          proxy_set_header        X-Forwarded-Proto https;
-          proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-
-          }
     }
     {{else}}
     server {
@@ -57,19 +48,10 @@ server {
         server_name {{index $url 1}}.{{getenv "ENDPOINT"}};
 
         location / {
-            proxy_pass http://{{.Value}};
-            proxy_set_header        X-Forwarded-Proto https;
-            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
-
-
-         error_page 502 /502.html;
-         location = /502.html {
-            proxy_pass {{getenv "502_URL"}};
-            proxy_set_header        X-Forwarded-Proto https;
-            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-
-         }
+                  proxy_pass http://{{.Value}};
+                  proxy_set_header        X-Forwarded-Proto https;
+                  proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+                }
     }
     {{end}}
   {{end}}
