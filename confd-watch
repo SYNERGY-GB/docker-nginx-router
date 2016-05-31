@@ -12,6 +12,7 @@ export NOTFOUND_URL=${NOTFOUND_URL:-https://en.wikipedia.org/wiki/HTTP_404}
 export TLS=${TLS:-1}
 export TLS_CERT=${TLS_CERT:-cert.crt}
 export TLS_KEY=${TLS_KEY:-cert.key}
+export PROXY_TIMEOUT="60s"
 
 ETCD_PORT=${ETCD_PORT:-4001}
 ETCD_PREFIX=${ETCD_PREFIX:-/apps}
